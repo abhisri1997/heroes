@@ -52,7 +52,9 @@ export class AddHeroComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.heroForm.value);
+    const heroName = this.heroForm.get('heroFormName')?.value;
+    const heroColor = this.heroForm.get('heroFormColor')?.value;
+    this.heroService.addHero(heroName, heroColor);
     this.resetForm();
   }
 

@@ -34,9 +34,14 @@ export class HeroService {
     return this.getHeroes().find((hero) => hero.id === heroId);
   }
 
-  addHero(heroName: string): number {
+  addHero(heroName: string, heroColor?: string): number {
     const newHeroId = this.getNewHeroId();
-    const newHero = new Hero(newHeroId, heroName);
+    let newHero: Hero;
+    if (heroColor) {
+      newHero = new Hero(newHeroId, heroName, heroColor);
+    } else {
+      newHero = new Hero(newHeroId, heroName);
+    }
     this.heroesList = [...this.heroesList, newHero];
     this.heroesUpdated.next(this.getHeroes());
     return newHeroId;

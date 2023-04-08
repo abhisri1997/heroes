@@ -1,10 +1,5 @@
 <div class="hero-edit-container">
-  <form
-    *ngIf="heroToLoad"
-    class="hero-form"
-    [formGroup]="heroForm"
-    (ngSubmit)="onFormSubmit()"
-  >
+  <form *ngIf="heroToLoad" class="hero-form" [formGroup]="heroForm" (ngSubmit)="onFormSubmit()">
     <div class="hero-id">
       <label>ID: </label>
       <span>{{ heroForm.get("heroId")?.value }}</span>
@@ -13,35 +8,19 @@
     <div class="hero-name">
       <label>Name: </label>
       <input type="text" formControlName="heroName" />
-      <span *ngIf="heroForm.get('heroName')?.invalid"
-        >{{ heroForm.invalid }} Check hero name
+      <span *ngIf="heroForm.get('heroName')?.invalid">{{ heroForm.invalid }} Check hero name
       </span>
     </div>
 
     <div class="hero-edit-actions">
-      <button
-        [disabled]="heroForm.invalid"
-        class="btn-primary"
-        type="submit"
-        title="Update hero"
-      >
+      <button [disabled]="heroForm.invalid" class="btn-primary" type="submit" title="Update hero">
         Update
       </button>
-      <button
-        [disabled]="heroForm.invalid"
-        type="button"
-        class="btn-danger"
-        title="Delete hero"
-        (click)="onDeleteHero()"
-      >
+      <button [disabled]="heroForm.invalid" type="button" class="btn-danger" title="Delete hero"
+        (click)="onDeleteHero()">
         Delete
       </button>
-      <button
-        type="button"
-        class="btn-normal"
-        title="Go back"
-        (click)="goBack()"
-      >
+      <button type="button" class="btn-normal" title="Go back" (click)="goBack()">
         Back
       </button>
     </div>
