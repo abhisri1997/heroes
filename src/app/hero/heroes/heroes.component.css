@@ -1,0 +1,35 @@
+.heroes-container {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+}
+
+.heroes-container h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.my-heroes-list {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 1.2rem;
+}
+
+.my-heroes-list>a {
+  padding: 10px;
+  background-color: #3d3d3d;
+  color: #e8e8e8;
+  font-weight: 400;
+  border-radius: 5px;
+}
+
+.add-hero>input,
+.add-hero button {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.add-hero button {
+  cursor: pointer;
+}

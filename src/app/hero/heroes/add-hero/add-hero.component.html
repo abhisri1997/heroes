@@ -1,0 +1,47 @@
+<div class="add-btn" *ngIf="!formMode">
+  <button (click)="toggleFormMode()">Add Hero</button>
+</div>
+
+<form
+  class="form-mode"
+  *ngIf="formMode"
+  [formGroup]="heroForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="form-group">
+    <label for="id">ID: </label>
+    <input
+      type="text"
+      class="form-control"
+      id="id"
+      placeholder="Enter ID..."
+      formControlName="heroFormId"
+    />
+  </div>
+  <div class="form-group">
+    <label for="name">Name: </label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      placeholder="Enter new hero name..."
+      formControlName="heroFormName"
+    />
+  </div>
+  <div class="form-group">
+    <label> Hero Color: </label>
+    <select formControlName="heroFormColor">
+      <option value="" disabled>Select Color</option>
+      <option *ngFor="let color of colors" [value]="color">
+        {{ color | titlecase }}
+      </option>
+    </select>
+  </div>
+
+  <div class="btn-actions">
+    <button type="submit" class="btn btn-primary" [disabled]="heroForm.invalid">
+      Submit
+    </button>
+    <button (click)="onCancel()" class="btn btn-danger">Cancel</button>
+  </div>
+</form>

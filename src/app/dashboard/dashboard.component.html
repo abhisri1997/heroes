@@ -1,1 +1,18 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <div class="top-heroes">
+    <h2>Top Heroes</h2>
+    <div class="top-heroes-list">
+      <a
+        routerLink="/hero/{{ hero.id }}/edit"
+        *ngFor="let hero of topHeroes; let i = index"
+        [attr.data-hero-id]="hero.id"
+        [attr.data-hero-index]="i"
+      >
+        <p>
+          {{ hero.name }}
+        </p>
+      </a>
+    </div>
+  </div>
+  <hero-hero-search></hero-hero-search>
+</div>

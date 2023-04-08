@@ -6,19 +6,25 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroesComponent } from './hero/heroes/heroes.component';
+import { LogggerPipe } from './shared/pipes/loggger.pipe';
+import { HeroSearchComponent } from './hero/hero-search/hero-search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeroEditComponent } from './hero/heroes/hero-edit/hero-edit.component';
+import { AddHeroComponent } from './hero/heroes/add-hero/add-hero.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     DashboardComponent,
-    HeroesComponent
+    HeaderComponent,
+    HeroesComponent,
+    LogggerPipe,
+    HeroSearchComponent,
+    HeroEditComponent,
+    AddHeroComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

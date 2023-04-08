@@ -1,0 +1,33 @@
+.hero-search-container {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+input:focus {
+  outline: #336699 auto 5px;
+}
+
+.searched-hero li a {
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  display: inline-block;
+  width: 100%;
+  padding: .5rem;
+}
+
+.searched-hero li a:hover {
+  background-color: #435A60;
+  color: white;
+}

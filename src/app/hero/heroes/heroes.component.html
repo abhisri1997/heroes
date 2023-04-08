@@ -1,1 +1,34 @@
-<p>heroes works!</p>
+<div class="heroes-container">
+  <div class="all-heroes">
+    <h2>My Heroes</h2>
+    <div class="my-heroes-list">
+      <a
+        routerLink="/hero/{{ hero.id }}/edit"
+        *ngFor="let hero of myHeroes; let i = index"
+        [attr.data-hero-id]="hero.id"
+        [attr.data-hero-index]="i"
+        [title]="hero.name"
+      >
+        <p>
+          {{ hero.name }}
+        </p>
+      </a>
+    </div>
+  </div>
+  <hero-add-hero></hero-add-hero>
+  <!-- <div class="add-hero">
+    <h2>Hero Name</h2>
+    <input
+      type="text"
+      name="new-hero"
+      id="new-hero"
+      placeholder="Batman..."
+      title="New hero name"
+      [(ngModel)]="heroName"
+      required
+    />
+    <button title="Add new hero" [disabled]="!heroName" (click)="onAddHero()">
+      Add Hero
+    </button>
+  </div> -->
+</div>
