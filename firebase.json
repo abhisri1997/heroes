@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "/Users/abhi/github/angular-tutorial/heroes/dist/heroes",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
