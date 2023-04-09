@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "/Users/abhi/github/angular-tutorial/heroes/dist/heroes",
+    "public": "dist/heroes",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -12,5 +12,13 @@
         "destination": "/index.html"
       }
     ]
+  },
+  "emulators": {
+    "hosting": {
+      "port": 6001
+    },
+    "ui": {
+      "enabled": true
+    }
   }
 }
