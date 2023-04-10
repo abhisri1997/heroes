@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 
 import { Hero, IHero } from 'src/app/hero/hero-entity/hero.model';
-import * as HeroActions from 'src/app/hero/store/hero.action';
+import * as HeroActions from 'src/app/store/hero/hero.action';
 
 @Injectable({
   providedIn: 'root',

@@ -12,7 +12,7 @@ import { LogggerPipe } from './shared/pipes/loggger.pipe';
 import { HeroSearchComponent } from './hero/hero-search/hero-search.component';
 import { HeroEditComponent } from './hero/heroes/hero-edit/hero-edit.component';
 import { AddHeroComponent } from './hero/heroes/add-hero/add-hero.component';
-import { heroReducer } from './hero/store/hero.reducer';
+import { appReducer } from './store';
 
 @NgModule({
   declarations: [
@@ -30,8 +30,8 @@ import { heroReducer } from './hero/store/hero.reducer';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(),
-    StoreModule.forFeature('hero', heroReducer),
+    StoreModule.forRoot(appReducer),
+    // StoreModule.forFeature('hero', heroReducer),
   ],
   providers: [],
   bootstrap: [AppComponent],

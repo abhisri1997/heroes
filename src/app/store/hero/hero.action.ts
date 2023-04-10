@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Hero, IHero } from '../hero-entity/hero.model';
+import { Hero, IHero } from '../../hero/hero-entity/hero.model';
 
 export const Add_Hero = 'Add_Hero';
 export const Update_Hero = 'Update_Hero';

@@ -1,4 +1,4 @@
-import { Hero } from '../hero-entity/hero.model';
+import { Hero } from 'src/app/hero/hero-entity/hero.model';
 import * as HeroActions from './hero.action';
 
 export interface HeroState {

@@ -6,7 +6,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Hero, IHero } from '../../hero-entity/hero.model';
-import * as HeroActions from '../../store/hero.action';
+import * as HeroActions from '../../../store/hero/hero.action';
 
 @Component({
   selector: 'hero-hero-edit',

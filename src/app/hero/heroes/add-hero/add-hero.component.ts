@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import { Hero } from '../../hero-entity/hero.model';
-import * as HeroActions from '../../store/hero.action';
+import * as HeroActions from '../../../store/hero/hero.action';
 import { HeroService } from 'src/app/shared/services/hero.service';
 
 @Component({
