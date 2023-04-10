@@ -10,7 +10,7 @@ import { Hero } from '../hero-entity/hero.model';
 })
 export class HeroSearchComponent {
   searchTerm: string = '';
-  heroes: ReadonlyArray<Hero> = [];
+  heroes: Array<Hero> = [];
 
   constructor(private heroService: HeroService) {}
 

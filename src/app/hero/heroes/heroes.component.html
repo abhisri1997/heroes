@@ -2,13 +2,8 @@
   <div class="all-heroes">
     <h2>My Heroes</h2>
     <div class="my-heroes-list">
-      <a
-        routerLink="/hero/{{ hero.id }}/edit"
-        *ngFor="let hero of myHeroes; let i = index"
-        [attr.data-hero-id]="hero.id"
-        [attr.data-hero-index]="i"
-        [title]="hero.name"
-      >
+      <a routerLink="/hero/{{ hero.id }}/edit" *ngFor="let hero of (myHeroes$ | async)?.heroes; let i = index"
+        [attr.data-hero-id]="hero.id" [attr.data-hero-index]="i" [title]="hero.name">
         <p>
           {{ hero.name }}
         </p>

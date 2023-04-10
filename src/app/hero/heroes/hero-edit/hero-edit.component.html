@@ -12,6 +12,13 @@
       </span>
     </div>
 
+    <div class="hero-color" *ngIf="heroForm.get('heroColor')?.value">
+      <label>Color: </label>
+      <input type="text" formControlName="heroColor" />
+      <span *ngIf="heroForm.get('heroColor')?.invalid">{{ heroForm.invalid }} Check hero color
+      </span>
+    </div>
+
     <div class="hero-edit-actions">
       <button [disabled]="heroForm.invalid" class="btn-primary" type="submit" title="Update hero">
         Update

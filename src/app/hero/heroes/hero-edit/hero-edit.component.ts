@@ -1,11 +1,12 @@
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
 
 import { Hero, IHero } from '../../hero-entity/hero.model';
-import { HeroService } from 'src/app/shared/services/hero.service';
+import * as HeroActions from '../../store/hero.action';
 
 @Component({
   selector: 'hero-hero-edit',
@@ -20,8 +21,8 @@ export class HeroEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private activeRoute: ActivatedRoute,
-    private heroService: HeroService,
-    private location: Location
+    private location: Location,
+    private heroStore: Store<{ hero: { heroes: Array<Hero> } }>
   ) {}
 
   ngOnInit(): void {
@@ -29,17 +30,21 @@ export class HeroEditComponent implements OnInit, OnDestroy {
       this.heroId = +params['id'];
     });
 
-    this.heroToLoad = this.heroService.getHero(this.heroId);
+    this.heroStore.select('hero').subscribe((hero) => {
+      this.heroToLoad = hero.heroes.find((hero) => hero.id === this.heroId);
+    });
 
     this.heroForm = new FormGroup({
       heroId: new FormControl(this.heroToLoad?.id),
       heroName: new FormControl(this.heroToLoad?.name, [Validators.required]),
+      heroColor: new FormControl(this.heroToLoad?.color),
     });
   }
 
   onFormSubmit() {
     const heroId = this.heroForm.value.heroId;
     const heroName = this.heroForm.value.heroName;
+    const heroColor = this.heroForm.value.heroColor;
     if (
       confirm('Are you sure you want to update this hero?') &&
       heroName !== ''
@@ -47,8 +52,9 @@ export class HeroEditComponent implements OnInit, OnDestroy {
       const heroToUpdate: IHero = {
         id: heroId,
         name: heroName,
+        color: heroColor,
       };
-      this.heroService.updateHero(heroToUpdate);
+      this.heroStore.dispatch(new HeroActions.UpdateHero(heroToUpdate));
       this.heroForm.reset();
       this.goBack();
     }
@@ -60,7 +66,7 @@ export class HeroEditComponent implements OnInit, OnDestroy {
 
   onDeleteHero() {
     if (confirm('Are you sure you want to delete this hero?')) {
-      this.heroService.deleteHero(this.heroId);
+      this.heroStore.dispatch(new HeroActions.DeleteHero(this.heroId));
       this.goBack();
     }
   }

@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
+import { Hero } from '../../hero-entity/hero.model';
+import * as HeroActions from '../../store/hero.action';
 import { HeroService } from 'src/app/shared/services/hero.service';
 
 @Component({
@@ -33,14 +36,19 @@ export class AddHeroComponent implements OnInit, OnDestroy {
     'indigo',
     'violet',
   ];
+  heroId!: number;
 
-  constructor(private heroService: HeroService) {}
+  constructor(
+    private heroService: HeroService,
+    private heroStore: Store<{ hero: { heroes: Array<Hero> } }>
+  ) {}
 
   ngOnInit(): void {
     this.heroForm.get('heroFormId')?.disable();
 
-    const newHeroId = this.heroService.getNewHeroId();
-    this.heroForm.get('heroFormId')?.setValue(newHeroId);
+    this.heroId = this.heroService.getNewHeroId();
+
+    this.heroForm.get('heroFormId')?.setValue(this.heroId);
   }
 
   toggleFormMode() {
@@ -50,7 +58,8 @@ export class AddHeroComponent implements OnInit, OnDestroy {
   onSubmit() {
     const heroName = this.heroForm.get('heroFormName')?.value;
     const heroColor = this.heroForm.get('heroFormColor')?.value;
-    this.heroService.addHero(heroName, heroColor);
+    const newHero = new Hero(this.heroId, heroName, heroColor);
+    this.heroStore.dispatch(new HeroActions.AddHero(newHero));
     this.resetForm();
   }
 

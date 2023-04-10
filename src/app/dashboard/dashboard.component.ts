@@ -1,6 +1,6 @@
+import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
 
-import { HeroService } from '../shared/services/hero.service';
 import { Hero } from '../hero/hero-entity/hero.model';
 
 @Component({
@@ -9,15 +9,13 @@ import { Hero } from '../hero/hero-entity/hero.model';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  topHeroes!: ReadonlyArray<Hero>;
+  topHeroes!: Array<Hero>;
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroStore: Store<{ hero: { heroes: Hero[] } }>) {}
 
   ngOnInit(): void {
-    this.topHeroes = this.getTopHeroes();
-  }
-
-  getTopHeroes(): any {
-    return this.heroService.getHeroes().slice(0, 5);
+    this.heroStore.select('hero').subscribe((hero) => {
+      this.topHeroes = hero.heroes.slice(0, 5);
+    });
   }
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -11,6 +12,7 @@ import { LogggerPipe } from './shared/pipes/loggger.pipe';
 import { HeroSearchComponent } from './hero/hero-search/hero-search.component';
 import { HeroEditComponent } from './hero/heroes/hero-edit/hero-edit.component';
 import { AddHeroComponent } from './hero/heroes/add-hero/add-hero.component';
+import { heroReducer } from './hero/store/hero.reducer';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,14 @@ import { AddHeroComponent } from './hero/heroes/add-hero/add-hero.component';
     HeroEditComponent,
     AddHeroComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    StoreModule.forRoot(),
+    StoreModule.forFeature('hero', heroReducer),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

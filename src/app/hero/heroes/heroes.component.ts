@@ -7,35 +7,20 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Hero } from '../hero-entity/hero.model';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'hero-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css'],
 })
-export class HeroesComponent implements OnInit, OnDestroy {
-  myHeroes!: ReadonlyArray<Hero>;
-  heroesSubscription$!: Subscription;
-  heroName: string = '';
+export class HeroesComponent implements OnInit {
+  myHeroes$!: Observable<{ heroes: Array<Hero> }>;
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroStore: Store<{ hero: { heroes: Array<Hero> } }>) {}
 
   ngOnInit(): void {
-    this.myHeroes = this.heroService.getHeroes();
-    this.heroesSubscription$ = this.heroService.heroesUpdated.subscribe(
-      (data) => {
-        this.myHeroes = data;
-      }
-    );
-  }
-
-  onAddHero() {
-    this.heroService.addHero(this.heroName);
-    this.heroName = '';
-  }
-
-  ngOnDestroy(): void {
-    this.heroesSubscription$.unsubscribe();
+    this.myHeroes$ = this.heroStore.select('hero');
   }
 }
